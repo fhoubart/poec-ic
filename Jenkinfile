@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Clone') {
+            steps {
+                git branch: 'main', url: 'https://github.com/fhoubart/poec-ic.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Demarrage du build'
+                bat "python generation.py"
+            }
+        }
+    }
+    post {
+        success {
+            archiveArtifacts '*.html'
+        }
+    }
+    
+}
