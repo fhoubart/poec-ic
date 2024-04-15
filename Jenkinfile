@@ -7,11 +7,6 @@ pipeline {
                 echo 'Hello World'
             }
         }
-        stage('Clone') {
-            steps {
-                git branch: 'main', url: 'https://github.com/fhoubart/poec-ic.git'
-            }
-        }
         stage('Build') {
             steps {
                 echo 'Demarrage du build'
